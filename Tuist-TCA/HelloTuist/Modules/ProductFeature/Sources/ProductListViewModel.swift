@@ -1,6 +1,7 @@
 import Foundation
 import Combine // @Published 사용 위함
 import Network // Network 모듈 임포트
+import Core
 
 public class ProductListViewModel: ObservableObject {
     
