@@ -31,13 +31,15 @@ struct CounterFeature {
     @Dependency(\.numberFact) var numberFact // API 클라이언트 의존성
     
     // MARK: - Reducer Body
-    var body: some ReducerOf<Self> {
+    // var body: some ReducerOf<Self> {     ReducerOf<Self> 의 typealias 를 풀면 Reducer<Self.State, Self.Action>
+    var body: some Reducer<Self.State, Self.Action> {     // 반환 타입은 Effect<Self.Action>.none, Effect<Self.Action>.run, ...
         Reduce { state, action in
             switch action {
             case.incrementButtonTapped:
                 state.count += 1
                 state.fact = nil // 카운트 변경 시 이전 fact 제거
-                return.none // 이 액션은 부수 효과 없음
+                return Effect<Self.Action>.none
+                // return.none     // 이 액션은 부수 효과 없음, 축약 표현
                 
             case.decrementButtonTapped:
                 state.count -= 1
@@ -59,7 +61,7 @@ struct CounterFeature {
                     await send(.factResponse(.failure(error)))
                 }
                 
-            case let.factResponse(.success(fact)):
+            case .factResponse(.success(let fact)):
                 state.isLoading = false
                 state.fact = fact
                 return.none
