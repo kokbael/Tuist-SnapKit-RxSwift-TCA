@@ -14,12 +14,16 @@ let project = Project(
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
+                    // 모든 HTTP 연결을 허용
+                    "NSAppTransportSecurity": [
+                        "NSAllowsArbitraryLoads": true,
+                    ],
                 ]
             ),
             sources: ["TCADemo/Sources/**"],
             resources: ["TCADemo/Resources/**"],
             dependencies: [
-                .external(name: "ComposableArchitecture")
+                .external(name: "ComposableArchitecture"),
             ]
         ),
         .target(
