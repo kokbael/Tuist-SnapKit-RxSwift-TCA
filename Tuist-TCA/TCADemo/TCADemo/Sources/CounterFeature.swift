@@ -13,12 +13,15 @@ struct CounterFeature {
     @ObservableState // SwiftUI 뷰에서 관찰 가능하도록 설정
     struct State: Equatable { // 테스트 용이성을 위해 Equatable 채택
         var count = 0
+        var isLoading = false
+        var fact: String?
     }
     
     // MARK: - Action
     enum Action {
         case incrementButtonTapped
         case decrementButtonTapped
+        case factButtonTapped
     }
     
     // MARK: - Reducer Body
@@ -27,10 +30,17 @@ struct CounterFeature {
             switch action {
             case .incrementButtonTapped:
                 state.count += 1
+                state.fact = nil
                 return .none
                 
             case .decrementButtonTapped:
                 state.count -= 1
+                state.fact = nil
+                return .none
+                
+            case .factButtonTapped:
+                state.fact = nil
+                state.isLoading = true
                 return .none
             }
         }
