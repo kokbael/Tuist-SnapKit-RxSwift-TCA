@@ -29,20 +29,20 @@ struct ContentView: View {
                 .cornerRadius(10)
             }
             Button("Fact") {
-                //        store.send(.factButtonTapped)
+                store.send(.factButtonTapped)
             }
             .font(.largeTitle)
             .padding()
             .background(Color.black.opacity(0.1))
             .cornerRadius(10)
             
-            if true /*store.isLoading*/ {
+            if store.isLoading {
                 ProgressView()
-            } else /*if let fact = store.fact*/ {
-                //        Text(fact)
-                //          .font(.largeTitle)
-                //          .multilineTextAlignment(.center)
-                //          .padding()
+            } else if let fact = store.fact {
+                Text(fact)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .padding()
             }
         }
     }
