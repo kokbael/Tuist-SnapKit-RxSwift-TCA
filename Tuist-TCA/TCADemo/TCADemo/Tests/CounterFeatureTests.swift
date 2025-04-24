@@ -28,7 +28,7 @@ struct CounterFeatureTests {
         // Act
         await store.send(.decrementButtonTapped) {
             // Assert
-            $0.count = 0
+            $0.count = -1
         }
     }
 }
