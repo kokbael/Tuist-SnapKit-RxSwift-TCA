@@ -14,12 +14,12 @@ struct AppView: View {
     
     var body: some View {
         TabView {
-            CounterView(store: store.scope(state: \.tab1, action: \.tab1))
+            CounterView(store: store.scope(state: \.aModuleState, action: \.aModuleAction))
                 .tabItem {
                     Text("Counter 1")
                 }
             
-            CounterView(store: store.scope(state: \.tab2, action: \.tab2))
+            CounterView(store: store.scope(state: \.bModuleState, action: \.bModuleAction))
                 .tabItem {
                     Text("Counter 2")
                 }

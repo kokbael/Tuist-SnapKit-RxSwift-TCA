@@ -10,18 +10,18 @@ import ComposableArchitecture
 @Reducer
 struct AppFeature {
     struct State: Equatable {
-        var tab1 = CounterFeature.State()
-        var tab2 = CounterFeature.State()
+        var aModuleState = CounterFeature.State()
+        var bModuleState = CounterFeature.State()
     }
     enum Action {
-        case tab1(CounterFeature.Action)
-        case tab2(CounterFeature.Action)
+        case aModuleAction(CounterFeature.Action)
+        case bModuleAction(CounterFeature.Action)
     }
     var body: some ReducerOf<Self> {
-        Scope(state: \.tab1, action: \.tab1) {
+        Scope(state: \.aModuleState, action: \.aModuleAction) {
             CounterFeature()
         }
-        Scope(state: \.tab2, action: \.tab2) {
+        Scope(state: \.bModuleState, action: \.bModuleAction) {
             CounterFeature()
         }
         Reduce { state, action in
